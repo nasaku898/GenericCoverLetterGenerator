@@ -14,12 +14,11 @@ public class App
 		}
 		catch (FileNotFoundException e)
 		{
-			System.out.println("file not found");
+			System.out.println("File not found");
 		}
 		catch (IOException e)
 		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Error");
 		}
 	}
 }
