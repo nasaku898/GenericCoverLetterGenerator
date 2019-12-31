@@ -27,20 +27,20 @@ public class CoverLetterGenerator
 		System.out.print("Enter new file name: ");
 		company = scanner.nextLine();
 
-		XWPFDocument document = new XWPFDocument();
-		XWPFDocument docx = new XWPFDocument(new FileInputStream("coverLetter.docx"));
+		XWPFDocument newCoverLetter = new XWPFDocument();
+		XWPFDocument genericCoverLetter = new XWPFDocument(new FileInputStream("coverLetter.genericCoverLetter"));
 
-		List<XWPFParagraph> paras = docx.getParagraphs();
+		List<XWPFParagraph> paras = genericCoverLetter.getParagraphs();
 		for (XWPFParagraph para : paras)
 		{
 			if (!para.getParagraphText().isEmpty())
 			{
-				XWPFParagraph newParagraph = document.createParagraph();
+				XWPFParagraph newParagraph = newCoverLetter.createParagraph();
 				setHiringManagerAndPosition(para, newParagraph);
 			}
 		}
 
-		document.write(new FileOutputStream("SimonLim_CoverLetter_" + company + ".docx"));
+		newCoverLetter.write(new FileOutputStream("SimonLim_CoverLetter_" + company + ".genericCoverLetter"));
 	}
 
 	private static void setHiringManagerAndPosition(XWPFParagraph oldParagraph, XWPFParagraph newParagraph)
@@ -76,7 +76,6 @@ public class CoverLetterGenerator
 			newRun.setItalic(run.isItalic());
 			newRun.setStrike(run.isStrike());
 			newRun.setColor(run.getColor());
-
 		}
 	}
 }
