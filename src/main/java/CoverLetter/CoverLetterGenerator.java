@@ -15,17 +15,20 @@ public class CoverLetterGenerator
 {
 	private static String hiringManager;
 	private static String position;
+	private static String company;
 
 	public static void createCoverLetter() throws FileNotFoundException, IOException
 	{
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("Enter Hiring Manager Name: ");
 		hiringManager = scanner.nextLine();
-		System.out.println("Enter Position: ");
+		System.out.print("Enter Position: ");
 		position = scanner.nextLine();
+		System.out.print("Enter new file name: ");
+		company = scanner.nextLine();
 
 		XWPFDocument document = new XWPFDocument();
-		XWPFDocument docx = new XWPFDocument(new FileInputStream("test.docx"));
+		XWPFDocument docx = new XWPFDocument(new FileInputStream("coverLetter.docx"));
 
 		List<XWPFParagraph> paras = docx.getParagraphs();
 		for (XWPFParagraph para : paras)
@@ -37,7 +40,7 @@ public class CoverLetterGenerator
 			}
 		}
 
-		document.write(new FileOutputStream("covertest.docx"));
+		document.write(new FileOutputStream("SimonLim_CoverLetter_" + company + ".docx"));
 	}
 
 	private static void setHiringManagerAndPosition(XWPFParagraph oldParagraph, XWPFParagraph newParagraph)
